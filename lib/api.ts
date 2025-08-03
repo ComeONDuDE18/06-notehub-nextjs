@@ -12,14 +12,17 @@ axios.defaults.headers.common['Authorization'] = myApiKey;
 export interface FetchNotesResponse {
     notes: Note[];
     totalPages: number;
+    
 }
 
-export const fetchNotes = async (searchText: string, page: number) => {
+export const fetchNotes = async ( page = 1,
+  perPage = 12,
+  searchText = "") => {
   const response = await axios.get<FetchNotesResponse>("/notes", {
     params: {
       ...(searchText !== "" && { search: searchText }),
       page,
-      perPage: 12,
+      perPage,
     },
   });
   return response.data;
@@ -38,4 +41,9 @@ export const createNote = async (note: {
 export const deleteNote = async (id: number): Promise<Note> => {
     const response = await axios.delete<Note>(`/notes/${id}`);
     return response.data;
+};
+
+export const fetchNoteById = async (id: string): Promise<Note> => {
+  const response = await axios.get<Note>(`/notes/${id}`);
+  return response.data;
 };
