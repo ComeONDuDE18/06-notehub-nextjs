@@ -15,6 +15,7 @@ export default async function NoteDetails({ params }: PageProps) {
     queryFn: () => fetchNoteById(id),
   });
 
+  
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <NoteDetailsClient id={id} />
