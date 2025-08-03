@@ -12,6 +12,7 @@ if (!myKey) {
 axios.defaults.headers.common["Authorization"] = `Bearer ${myKey}`;
 
 
+
 export interface FetchNotesResponse {
     notes: Note[];
     totalPages: number;
