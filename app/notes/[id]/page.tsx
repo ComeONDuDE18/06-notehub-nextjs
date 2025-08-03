@@ -4,10 +4,10 @@ import NoteDetailsClient from "./NoteDetails.client";
 import { QueryClient } from "@tanstack/react-query";
 
 
-
 interface PageProps {
-  params: Promise<{id: string}>;
+  params: { id: string };
 };
+
 
 
 export default async function NoteDetails({ params }: PageProps) {
