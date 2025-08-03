@@ -6,8 +6,11 @@ import type { Note, NoteTag } from "../types/note";
 
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 const myKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN
-const myApiKey = `Bearer ${myKey}`;
-axios.defaults.headers.common['Authorization'] = myApiKey;
+if (!myKey) {
+  throw new Error("NEXT_PUBLIC_NOTEHUB_TOKEN is not defined");
+}
+axios.defaults.headers.common["Authorization"] = `Bearer ${myKey}`;
+
 
 export interface FetchNotesResponse {
     notes: Note[];
