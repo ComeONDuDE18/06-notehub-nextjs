@@ -1,5 +1,5 @@
 import { fetchNotes } from "../../lib/api";
-import NotesClient from "./NotesHub";
+import NotesClient from "./Notess.client";
 
 
 export default async function Page() {
