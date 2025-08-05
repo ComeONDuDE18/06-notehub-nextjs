@@ -13,11 +13,12 @@ interface NoteDetailsClientProps {
 export default function NoteDetailsClient({id}: NoteDetailsClientProps) {
    
 
-    const { data, isLoading, isError, } = useQuery<Note>({
-        queryKey: ['note', id],
-        queryFn: () => fetchNoteById(id),
-      
-    });
+const { data, isLoading, isError } = useQuery<Note>({
+  queryKey: ["note", id],
+  queryFn: () => fetchNoteById(id),
+  refetchOnMount: false,
+});
+
 
     console.log(data);
 

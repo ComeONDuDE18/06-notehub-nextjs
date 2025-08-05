@@ -16,13 +16,14 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${myKey}`;
 export interface FetchNotesResponse {
     notes: Note[];
     totalPages: number;
-    searchText: string;
     
 }
 
-export const fetchNotes = async ( page = 1,
+export const fetchNotes = async (
+  page = 1,
   perPage = 12,
-  searchText = "") => {
+  searchText = ""
+): Promise<FetchNotesResponse> => {
   const response = await axios.get<FetchNotesResponse>("/notes", {
     params: {
       ...(searchText !== "" && { search: searchText }),
@@ -32,6 +33,7 @@ export const fetchNotes = async ( page = 1,
   });
   return response.data;
 };
+
 
 export const createNote = async (note: {
     title: string;
@@ -43,7 +45,7 @@ export const createNote = async (note: {
     return response.data;
 };
 
-export const deleteNote = async (id: number): Promise<Note> => {
+export const deleteNote = async (id: string): Promise<Note> => {
     const response = await axios.delete<Note>(`/notes/${id}`);
     return response.data;
 };
